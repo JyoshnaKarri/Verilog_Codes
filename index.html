@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Verilog HDL Mastery – Projects, Code & Waveforms</title>
+    <title>Verilog HDL Mastery – Projects, Code & Waveforms (All Images Fixed)</title>
     <style>
         * {
             margin: 0;
@@ -24,7 +24,6 @@
             margin: 0 auto;
         }
 
-        /* header & theory section */
         .theory {
             background: linear-gradient(145deg, #10131c, #090b10);
             border-radius: 2rem;
@@ -92,7 +91,6 @@
             margin: 1.5rem 0;
         }
 
-        /* projects section */
         .projects-header {
             display: flex;
             justify-content: space-between;
@@ -275,17 +273,16 @@
     </div>
 
     <div id="projectsRoot" class="project-grid">
-        <!-- dynamic rendering via JS -->
         <div style="text-align:center; grid-column:1/-1;">loading ruthless projects...</div>
     </div>
     <footer>
         🧪 Full Verilog portfolio — each entry shows code snippet & waveform (real simulation captures).<br>
-        Principles, working & examples are generated per module structure. All images must be placed in same folder as this HTML.
+        All images must be placed in same folder as this HTML. Missing waveforms now fixed: decoder_waveform.jpeg, 4_in_1_op_mux.jpeg added.
     </footer>
 </div>
 
 <script>
-    // ---------- RAW INPUT: CODE PNG filenames (extracted from user list) ----------
+    // ---------- CODE PNG FILES (all from user input) ----------
     const codeFilesRaw = [
         "2_to_4_decoder code.png", "4_bit_left_shift code.png", "4_bit_reg code.png",
         "4_bit_r8_shift code.png", "4_bit_counter code.png", "up_down_counter code.png",
@@ -301,7 +298,7 @@
         "uart_tx_tb code.png", "uart_tx code.png"
     ];
 
-    // Waveform JPEG list as provided
+    // ---------- WAVEFORM FILES (original + added missing ones) ----------
     const waveformFilesRaw = [
         "4_bit_counter_waveform.jpeg", "4_bit_r8_shift_waveform.jpeg", "4_bit_reg_waveform.jpeg",
         "8_bit_alu_waveform.jpeg", "alu_waveform.jpeg", "async_waveform.jpeg", "bin2bcd_waveform.jpeg",
@@ -309,23 +306,29 @@
         "fa_waveform.jpeg", "ha_waveform.jpeg", "left_shift_waveform.jpeg", "lfsr_waveform.jpeg",
         "mealy_waveform.jpeg", "mod_10_counter_waveform.jpeg", "moore_waveform.jpeg",
         "parametrised_waveform.jpeg", "pwm_waveform.jpeg", "riscv_waveform.jpeg", "spi_waveform.jpeg",
-        "syn_fifo_waveform.jpeg", "tiny_cpu_waveform,jpeg", "traffic_l8_waveform.jpeg",
-        "uart_rx_waveform.jpeg", "uart_tx_waveform.jpeg", "up_down_counter_waveform.jpeg"
+        "syn_fifo_waveform.jpeg", "tiny_cpu_waveform.jpeg", "traffic_l8_waveform.jpeg",
+        "uart_rx_waveform.jpeg", "uart_tx_waveform.jpeg", "up_down_counter_waveform.jpeg",
+        // === ADDED MISSING ONES ===
+        "decoder_waveform.jpeg",      // for 2_to_4_decoder
+        "4_in_1_op_mux.jpeg"          // for 4_1_mux
     ];
-    // fix tiny cpu waveform typo from user: "tiny_cpu_waveform,jpeg" -> correct .jpeg
-    const waveformSet = new Set(waveformFilesRaw.map(w => w.replace(",jpeg", ".jpeg")));
+    
+    // Fix any typo (user had tiny_cpu_waveform,jpeg)
+    const waveformSet = new Set(waveformFilesRaw.map(w => w.replace(/,jpeg/i, ".jpeg")));
 
-    // Helper: normalize project name from code file (remove " code.png" and trim)
+    // Helper: normalize project base name from code filename
     function getProjectBaseName(codeFilename) {
-        let name = codeFilename.replace(/ code\.png$/i, "").trim();
-        return name;
+        return codeFilename.replace(/ code\.png$/i, "").trim();
     }
 
-    // find best matching waveform for a given project base name (case-insensitive, fuzzy)
+    // Smart waveform mapping with special cases for missing images
     function findWaveform(projectBase) {
-        // direct exact match after lowercasing
         let lowered = projectBase.toLowerCase();
-        // common mapping: asynch -> async_waveform
+        // Direct overrides based on user's missing list
+        if (lowered === "2_to_4_decoder") return "decoder_waveform.jpeg";
+        if (lowered === "4_1_mux") return "4_in_1_op_mux.jpeg";
+        
+        // Existing fuzzy logic
         if (lowered === "asynch") lowered = "async";
         if (lowered === "asynch_tb") lowered = "async";
         if (lowered === "d_flip_flop") lowered = "d_ff";
@@ -333,7 +336,7 @@
         if (lowered === "full_adder") lowered = "fa";
         if (lowered === "full_adder_tb") lowered = "fa";
         if (lowered === "4_bit_left_shift") lowered = "left_shift";
-        if (lowered === "4_bit_r8_shift") lowered = "4_bit_r8_shift"; // exists
+        if (lowered === "4_bit_r8_shift") lowered = "4_bit_r8_shift";
         if (lowered === "up_down_counter") lowered = "up_down_counter";
         if (lowered === "4_bit_counter") lowered = "4_bit_counter";
         if (lowered === "8_bit_alu") lowered = "8_bit_alu";
@@ -352,7 +355,6 @@
         if (lowered === "uart_rx_tb") lowered = "uart_rx";
         if (lowered === "uart_tx_tb") lowered = "uart_tx";
         
-        // try direct candidate
         let candidates = [
             `${lowered}_waveform.jpeg`,
             `${lowered.replace(/_tb$/, '')}_waveform.jpeg`,
@@ -361,11 +363,10 @@
         for (let cand of candidates) {
             if (waveformSet.has(cand)) return cand;
         }
-        // last try for mod10 or param? not in code but optional graceful
         return null;
     }
 
-    // generate dynamic description: function, principle, working, example based on project name
+    // Generate descriptive content
     function generateMeta(projectBase) {
         const base = projectBase.toLowerCase();
         let functionDesc = "Digital logic module";
@@ -507,7 +508,7 @@
         return { functionDesc, principle, working, example };
     }
 
-    // Build projects array sorted alphabetically by base name
+    // Build projects, sort alphabetically
     let projects = [];
     for (let codeFile of codeFilesRaw) {
         let baseName = getProjectBaseName(codeFile);
@@ -521,10 +522,8 @@
             ...meta
         });
     }
-    // sort by title alphabetical
     projects.sort((a,b) => a.title.localeCompare(b.title));
 
-    // Render dynamic HTML
     const root = document.getElementById('projectsRoot');
     function renderProjects() {
         let html = '';

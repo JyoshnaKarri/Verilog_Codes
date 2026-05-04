@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Verilog HDL Mastery – Projects, Code & Waveforms (All Images Fixed)</title>
+    <title>Verilog HDL Mastery – Projects, Code & Waveforms</title>
     <style>
         * {
             margin: 0;
@@ -84,11 +84,6 @@
         .theory-card ul {
             padding-left: 1.2rem;
             margin-top: 0.5rem;
-        }
-
-        hr {
-            border-color: #252b38;
-            margin: 1.5rem 0;
         }
 
         .projects-header {
@@ -273,65 +268,58 @@
     </div>
 
     <div id="projectsRoot" class="project-grid">
-        <div style="text-align:center; grid-column:1/-1;">loading ruthless projects...</div>
+        <div style="text-align:center; grid-column:1/-1;">loading projects...</div>
     </div>
     <footer>
         🧪 Full Verilog portfolio — each entry shows code snippet & waveform (real simulation captures).<br>
-        All images must be placed in same folder as this HTML. Missing waveforms now fixed: decoder_waveform.jpeg, 4_in_1_op_mux.jpeg added.
+        All images must be placed in same folder as this HTML.
     </footer>
 </div>
 
 <script>
-    // ---------- CODE PNG FILES (all from user input) ----------
+    // ---------- CODE PNG FILES (D flip-flop and all UART entries removed) ----------
     const codeFilesRaw = [
         "2_to_4_decoder code.png", "4_bit_left_shift code.png", "4_bit_reg code.png",
         "4_bit_r8_shift code.png", "4_bit_counter code.png", "up_down_counter code.png",
         "4_1_mux code.png", "8_bit_alu code.png", "alu_tb code.png", "alu code.png",
         "bin2bcd_tb code.png", "bin2bcd code.png", "clk_tb code.png", "clk code.png",
-        "D_flip_flop_code.png", "debounce_tb code.png", "debounce code.png",
+        "debounce_tb code.png", "debounce code.png",
         "half_adder_complete code.png", "lfsr_tb code.png", "lfsr code.png",
         "mealy_tb code.png", "mealy code.png", "full_adder_tb code.png", "full_adder code.png",
         "moore_tb code.png", "moore code.png", "asynch code.png", "asynch_tb code.png",
         "pwm_tb code.png", "pwm code.png", "riscv_pipe_tb code.png", "riscv_pipe code.png",
         "spi_master_tb code.png", "spi_master code.png", "tiny_cpu code.png", "tiny_cpu_tb code.png",
-        "traffic_l8 code.png", "traffic_l8_tb code.png", "uart_rx_code.png", "uart_rx_tb_code.png",
-        "uart_tx_tb_code.png", "uart_tx_code.png"
+        "traffic_l8 code.png", "traffic_l8_tb code.png"
     ];
 
-    // ---------- WAVEFORM FILES (original + added missing ones) ----------
+    // ---------- WAVEFORM FILES (removed uart_rx_waveform.jpeg, uart_tx_waveform.jpeg, d_ff_waveform.jpeg) ----------
     const waveformFilesRaw = [
         "4_bit_counter_waveform.jpeg", "4_bit_r8_shift_waveform.jpeg", "4_bit_reg_waveform.jpeg",
         "8_bit_alu_waveform.jpeg", "alu_waveform.jpeg", "async_waveform.jpeg", "bin2bcd_waveform.jpeg",
-        "clk_waveform.jpeg", "d_ff_waveform.jpeg", "debounce_waveform.jpeg", "dual_port_ram_waveform.jpeg",
+        "clk_waveform.jpeg", "debounce_waveform.jpeg", "dual_port_ram_waveform.jpeg",
         "fa_waveform.jpeg", "ha_waveform.jpeg", "left_shift_waveform.jpeg", "lfsr_waveform.jpeg",
         "mealy_waveform.jpeg", "mod_10_counter_waveform.jpeg", "moore_waveform.jpeg",
         "parametrised_waveform.jpeg", "pwm_waveform.jpeg", "riscv_waveform.jpeg", "spi_waveform.jpeg",
         "syn_fifo_waveform.jpeg", "tiny_cpu_waveform.jpeg", "traffic_l8_waveform.jpeg",
-        "uart_rx_waveform.jpeg", "uart_tx_waveform.jpeg", "up_down_counter_waveform.jpeg",
-        // === ADDED MISSING ONES ===
-        "decoder_waveform.jpeg",      // for 2_to_4_decoder
-        "4_in_1_op_mux.jpeg"          // for 4_1_mux
+        "up_down_counter_waveform.jpeg",
+        // Added missing ones
+        "decoder_waveform.jpeg",
+        "4_in_1_op_mux.jpeg"
     ];
     
-    // Fix any typo (user had tiny_cpu_waveform,jpeg)
     const waveformSet = new Set(waveformFilesRaw.map(w => w.replace(/,jpeg/i, ".jpeg")));
 
-    // Helper: normalize project base name from code filename
     function getProjectBaseName(codeFilename) {
         return codeFilename.replace(/ code\.png$/i, "").trim();
     }
 
-    // Smart waveform mapping with special cases for missing images
     function findWaveform(projectBase) {
         let lowered = projectBase.toLowerCase();
-        // Direct overrides based on user's missing list
         if (lowered === "2_to_4_decoder") return "decoder_waveform.jpeg";
         if (lowered === "4_1_mux") return "4_in_1_op_mux.jpeg";
         
-        // Existing fuzzy logic
         if (lowered === "asynch") lowered = "async";
         if (lowered === "asynch_tb") lowered = "async";
-        if (lowered === "d_flip_flop") lowered = "d_ff";
         if (lowered === "half_adder_complete") lowered = "ha";
         if (lowered === "full_adder") lowered = "fa";
         if (lowered === "full_adder_tb") lowered = "fa";
@@ -352,8 +340,6 @@
         if (lowered === "spi_master_tb" || lowered === "spi_master") lowered = "spi";
         if (lowered === "tiny_cpu_tb" || lowered === "tiny_cpu") lowered = "tiny_cpu";
         if (lowered === "traffic_l8_tb" || lowered === "traffic_l8") lowered = "traffic_l8";
-        if (lowered === "uart_rx_tb") lowered = "uart_rx";
-        if (lowered === "uart_tx_tb") lowered = "uart_tx";
         
         let candidates = [
             `${lowered}_waveform.jpeg`,
@@ -366,7 +352,6 @@
         return null;
     }
 
-    // Generate descriptive content
     function generateMeta(projectBase) {
         const base = projectBase.toLowerCase();
         let functionDesc = "Digital logic module";
@@ -424,11 +409,6 @@
             principle = "Counter-based frequency division.";
             working = "Outputs slower clock from fast oscillator.";
             example = "Generate 1Hz from 50MHz.";
-        } else if (base.includes("d_flip_flop")) {
-            functionDesc = "D flip-flop with async reset.";
-            principle = "Edge-sensitive storage element.";
-            working = "Q <= D at posedge clk.";
-            example = "Basic memory element, shift registers.";
         } else if (base.includes("debounce")) {
             functionDesc = "Switch debouncer: removes bouncing from mechanical buttons.";
             principle = "State machine with counter delay.";
@@ -489,16 +469,6 @@
             principle = "FSM with timers.";
             working = "Red -> Green -> Yellow -> Red.";
             example = "Intersection control demo.";
-        } else if (base.includes("uart_rx")) {
-            functionDesc = "UART Receiver: converts serial to parallel.";
-            principle = "Start bit detection, baud sampling.";
-            working = "Stores received byte.";
-            example = "Serial console link.";
-        } else if (base.includes("uart_tx")) {
-            functionDesc = "UART Transmitter: parallel to serial.";
-            principle = "Shift out with start/stop bits.";
-            working = "Transmits byte LSB first.";
-            example = "Debug logging.";
         } else {
             functionDesc = `Verilog module: ${projectBase.replace(/_/g, ' ')}`;
             principle = "Synthesizable RTL design.";
@@ -508,7 +478,6 @@
         return { functionDesc, principle, working, example };
     }
 
-    // Build projects, sort alphabetically
     let projects = [];
     for (let codeFile of codeFilesRaw) {
         let baseName = getProjectBaseName(codeFile);
@@ -545,7 +514,7 @@
                         <div class="img-card">
                             <p>📈 WAVEFORM SIMULATION</p>
                             ${hasWave ? `<img src="${escapeHtml(proj.waveformImg)}" alt="waveform: ${proj.title}" onclick="window.open(this.src)" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20100%22%3E%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2250%22%20fill%3D%22%23ffa07a%22%3EWaveform%20not%20found%3C%2Ftext%3E%3C%2Fsvg%3E';">` 
-                            : `<div class="missing">⚠️ Waveform not available in provided list (JPEG missing)</div>`}
+                            : `<div class="missing">⚠️ Waveform not available</div>`}
                         </div>
                     </div>
                     <div class="details">

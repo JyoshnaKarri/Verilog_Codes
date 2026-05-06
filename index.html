@@ -3,250 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Verilog HDL Mastery – Projects, Code & Waveforms</title>
+    <title>Verilog HDL Mastery – Projects, Code & Waveforms (Full Updated)</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #0a0c12;
-            font-family: 'Segoe UI', 'Fira Code', 'Courier New', monospace;
-            color: #e3e6f0;
-            line-height: 1.5;
-            padding: 2rem 1.5rem;
-        }
-
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .theory {
-            background: linear-gradient(145deg, #10131c, #090b10);
-            border-radius: 2rem;
-            padding: 2rem 2rem 2.5rem;
-            margin-bottom: 3rem;
-            border: 1px solid #2a2f3f;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #b3f0ff, #7aa2f7);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.75rem;
-        }
-
-        .subhead {
-            color: #9aa3c2;
-            border-left: 4px solid #3b82f6;
-            padding-left: 1rem;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .theory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .theory-card {
-            background: #11141e;
-            border-radius: 1.2rem;
-            padding: 1.3rem 1.5rem;
-            border: 1px solid #262c3c;
-            transition: all 0.2s;
-        }
-
-        .theory-card h3 {
-            color: #7aa2f7;
-            margin-bottom: 0.75rem;
-            font-size: 1.35rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .theory-card p, .theory-card ul {
-            font-size: 0.95rem;
-            color: #cbd5f0;
-        }
-
-        .theory-card ul {
-            padding-left: 1.2rem;
-            margin-top: 0.5rem;
-        }
-
-        .projects-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin: 2rem 0 1.5rem;
-        }
-
-        .projects-header h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            background: linear-gradient(120deg, #d9e2ff, #a5b9ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .badge {
-            background: #1a1f2e;
-            padding: 0.3rem 1rem;
-            border-radius: 60px;
-            font-size: 0.8rem;
-            font-family: monospace;
-            border: 1px solid #3e4a6b;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: #0f131d;
-            border-radius: 1.6rem;
-            border: 1px solid #262d3e;
-            overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s;
-            backdrop-filter: blur(2px);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.6);
-            border-color: #3b4b6e;
-        }
-
-        .card-header {
-            background: #080c14;
-            padding: 0.9rem 1.2rem;
-            border-bottom: 1px solid #232837;
-        }
-
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: -0.2px;
-            font-family: 'Fira Code', monospace;
-            color: #ffdf8c;
-            word-break: break-word;
-        }
-
-        .serial {
-            font-size: 0.75rem;
-            background: #1f2a3e;
-            display: inline-block;
-            padding: 0.2rem 0.7rem;
-            border-radius: 20px;
-            margin-left: 0.8rem;
-            font-family: monospace;
-        }
-
-        .image-section {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            padding: 1.2rem;
-            background: #0b0e16;
-        }
-
-        .img-card {
-            background: #00000033;
-            border-radius: 1rem;
-            overflow: hidden;
-            border: 1px solid #2a3145;
-        }
-
-        .img-card p {
-            font-size: 0.7rem;
-            background: #00000070;
-            padding: 0.3rem 0.8rem;
-            font-family: monospace;
-            color: #9aa7d4;
-            letter-spacing: 0.5px;
-        }
-
-        .img-card img {
-            width: 100%;
-            display: block;
-            background: #010101;
-            object-fit: contain;
-            max-height: 220px;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .img-card img:hover {
-            opacity: 0.9;
-        }
-
-        .details {
-            padding: 1rem 1.2rem 1.3rem;
-            background: #0c101a;
-            border-top: 1px solid #1e2436;
-            font-size: 0.85rem;
-        }
-
-        .details p {
-            margin: 0.5rem 0;
-            line-height: 1.4;
-        }
-
-        .details strong {
-            color: #90b0ff;
-            font-family: monospace;
-        }
-
-        .func-badge {
-            background: #1e2a3a;
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            display: inline-block;
-            margin-right: 0.5rem;
-        }
-
-        .missing {
-            color: #f28b82;
-            font-style: italic;
-            background: #2a1a1f;
-            padding: 0.3rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        footer {
-            margin-top: 4rem;
-            text-align: center;
-            color: #6b7280;
-            border-top: 1px solid #232837;
-            padding-top: 2rem;
-            font-size: 0.8rem;
-        }
-
-        @media (max-width: 780px) {
-            body { padding: 1rem; }
-            .project-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2rem; }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0a0c12; font-family: 'Segoe UI', 'Fira Code', monospace; color: #e3e6f0; line-height: 1.5; padding: 2rem 1.5rem; }
+        .container { max-width: 1600px; margin: 0 auto; }
+        .theory { background: linear-gradient(145deg, #10131c, #090b10); border-radius: 2rem; padding: 2rem; margin-bottom: 3rem; border: 1px solid #2a2f3f; }
+        h1 { font-size: 2.8rem; background: linear-gradient(135deg, #b3f0ff, #7aa2f7); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .theory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .theory-card { background: #11141e; border-radius: 1.2rem; padding: 1.3rem 1.5rem; border: 1px solid #262c3c; }
+        .theory-card h3 { color: #7aa2f7; margin-bottom: 0.75rem; }
+        .projects-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin: 2rem 0 1.5rem; }
+        .projects-header h2 { font-size: 2rem; background: linear-gradient(120deg, #d9e2ff, #a5b9ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .badge { background: #1a1f2e; padding: 0.3rem 1rem; border-radius: 60px; font-size: 0.8rem; border: 1px solid #3e4a6b; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px,1fr)); gap: 2rem; }
+        .project-card { background: #0f131d; border-radius: 1.6rem; border: 1px solid #262d3e; overflow: hidden; transition: transform 0.2s; }
+        .project-card:hover { transform: translateY(-4px); border-color: #3b4b6e; }
+        .card-header { background: #080c14; padding: 0.9rem 1.2rem; border-bottom: 1px solid #232837; }
+        .project-title { font-size: 1.4rem; font-weight: 700; color: #ffdf8c; word-break: break-word; }
+        .serial { font-size: 0.75rem; background: #1f2a3e; display: inline-block; padding: 0.2rem 0.7rem; border-radius: 20px; margin-left: 0.8rem; }
+        .image-section { display: flex; flex-direction: column; gap: 0.8rem; padding: 1.2rem; background: #0b0e16; }
+        .img-card { background: #00000033; border-radius: 1rem; overflow: hidden; border: 1px solid #2a3145; }
+        .img-card p { font-size: 0.7rem; background: #00000070; padding: 0.3rem 0.8rem; color: #9aa7d4; }
+        .img-card img { width: 100%; display: block; max-height: 220px; cursor: pointer; }
+        .details { padding: 1rem 1.2rem; background: #0c101a; border-top: 1px solid #1e2436; font-size: 0.85rem; }
+        .details p { margin: 0.5rem 0; }
+        .details strong { color: #90b0ff; }
+        .func-badge { background: #1e2a3a; padding: 0.2rem 0.5rem; border-radius: 12px; font-size: 0.7rem; display: inline-block; margin-right: 0.5rem; }
+        .missing { color: #f28b82; background: #2a1a1f; padding: 0.3rem; border-radius: 8px; text-align: center; }
+        footer { margin-top: 4rem; text-align: center; color: #6b7280; border-top: 1px solid #232837; padding-top: 2rem; }
+        @media (max-width: 780px) { body { padding: 1rem; } .project-grid { grid-template-columns: 1fr; } h1 { font-size: 2rem; } }
     </style>
 </head>
 <body>
@@ -261,38 +47,28 @@
             <div class="theory-card"><h3>🏗️ Types of Verilog Structure</h3><ul><li>Modules / ports</li><li>Continuous assignments (assign)</li><li>Procedural blocks (always, initial)</li><li>Gate‑level & dataflow</li><li>Finite State Machines (Mealy/Moore)</li><li>Testbenches (timing, monitors)</li></ul></div>
         </div>
     </div>
-
     <div class="projects-header">
         <h2>📁 VERILOG PROJECTS · CODE + WAVEFORMS</h2>
         <span class="badge">🔍 alphabetical order | click image to enlarge</span>
     </div>
-
-    <div id="projectsRoot" class="project-grid">
-        <div style="text-align:center; grid-column:1/-1;">loading projects...</div>
-    </div>
-    <footer>
-        🧪 Full Verilog portfolio — each entry shows code snippet & waveform (real simulation captures).<br>
-        All images must be placed in same folder as this HTML.
-    </footer>
+    <div id="projectsRoot" class="project-grid"><div style="text-align:center; grid-column:1/-1;">loading projects...</div></div>
+    <footer>🧪 Full Verilog portfolio — place all .png and .jpeg files in the same folder as this HTML.</footer>
 </div>
-
 <script>
-    // ---------- CODE PNG FILES (D flip-flop and all UART entries removed) ----------
     const codeFilesRaw = [
         "2_to_4_decoder code.png", "4_bit_left_shift code.png", "4_bit_reg code.png",
         "4_bit_r8_shift code.png", "4_bit_counter code.png", "up_down_counter code.png",
         "4_1_mux code.png", "8_bit_alu code.png", "alu_tb code.png", "alu code.png",
         "bin2bcd_tb code.png", "bin2bcd code.png", "clk_tb code.png", "clk code.png",
-        "debounce_tb code.png", "debounce code.png",
-        "half_adder_complete code.png", "lfsr_tb code.png", "lfsr code.png",
-        "mealy_tb code.png", "mealy code.png", "full_adder_tb code.png", "full_adder code.png",
-        "moore_tb code.png", "moore code.png", "asynch code.png", "asynch_tb code.png",
-        "pwm_tb code.png", "pwm code.png", "riscv_pipe_tb code.png", "riscv_pipe code.png",
-        "spi_master_tb code.png", "spi_master code.png", "tiny_cpu code.png", "tiny_cpu_tb code.png",
-        "traffic_l8 code.png", "traffic_l8_tb code.png"
+        "debounce_tb code.png", "debounce code.png", "half_adder_complete code.png",
+        "lfsr_tb code.png", "lfsr code.png", "mealy_tb code.png", "mealy code.png",
+        "full_adder_tb code.png", "full_adder code.png", "moore_tb code.png", "moore code.png",
+        "asynch code.png", "asynch_tb code.png", "pwm_tb code.png", "pwm code.png",
+        "riscv_pipe_tb code.png", "riscv_pipe code.png", "spi_master_tb code.png", "spi_master code.png",
+        "tiny_cpu code.png", "tiny_cpu_tb code.png", "traffic_l8 code.png", "traffic_l8_tb code.png",
+        "universal_shift_reg code.png", "pipelined_multiplier code.png",
+        "D_flip_flop_code.png", "uart_tx_code.png", "uart_tx_tb_code.png", "uart_rx_tb_code.png", "uart_rx_code.png"
     ];
-
-    // ---------- WAVEFORM FILES (removed uart_rx_waveform.jpeg, uart_tx_waveform.jpeg, d_ff_waveform.jpeg) ----------
     const waveformFilesRaw = [
         "4_bit_counter_waveform.jpeg", "4_bit_r8_shift_waveform.jpeg", "4_bit_reg_waveform.jpeg",
         "8_bit_alu_waveform.jpeg", "alu_waveform.jpeg", "async_waveform.jpeg", "bin2bcd_waveform.jpeg",
@@ -301,239 +77,103 @@
         "mealy_waveform.jpeg", "mod_10_counter_waveform.jpeg", "moore_waveform.jpeg",
         "parametrised_waveform.jpeg", "pwm_waveform.jpeg", "riscv_waveform.jpeg", "spi_waveform.jpeg",
         "syn_fifo_waveform.jpeg", "tiny_cpu_waveform.jpeg", "traffic_l8_waveform.jpeg",
-        "up_down_counter_waveform.jpeg",
-        // Added missing ones
-        "decoder_waveform.jpeg",
-        "4_in_1_op_mux.jpeg"
+        "up_down_counter_waveform.jpeg", "decoder_waveform.jpeg", "4_in_1_op_mux.jpeg",
+        "universal_shifter_waveform.jpeg", "pipelined_multiplier_waveform.jpeg",
+        "d_ff_waveform.jpeg", "uart_rx_waveform.jpeg", "uart_tx_waveform.jpeg"
     ];
-    
     const waveformSet = new Set(waveformFilesRaw.map(w => w.replace(/,jpeg/i, ".jpeg")));
-
-    function getProjectBaseName(codeFilename) {
-        return codeFilename.replace(/ code\.png$/i, "").trim();
+    function getProjectBaseName(f) {
+        if (f.endsWith(" code.png")) return f.replace(/ code\.png$/, "").trim();
+        if (f.endsWith("_code.png")) return f.replace(/_code\.png$/, "").trim();
+        return f.replace(/\.png$/, "").trim();
     }
-
-    function findWaveform(projectBase) {
-        let lowered = projectBase.toLowerCase();
-        if (lowered === "2_to_4_decoder") return "decoder_waveform.jpeg";
-        if (lowered === "4_1_mux") return "4_in_1_op_mux.jpeg";
-        
-        if (lowered === "asynch") lowered = "async";
-        if (lowered === "asynch_tb") lowered = "async";
-        if (lowered === "half_adder_complete") lowered = "ha";
-        if (lowered === "full_adder") lowered = "fa";
-        if (lowered === "full_adder_tb") lowered = "fa";
-        if (lowered === "4_bit_left_shift") lowered = "left_shift";
-        if (lowered === "4_bit_r8_shift") lowered = "4_bit_r8_shift";
-        if (lowered === "up_down_counter") lowered = "up_down_counter";
-        if (lowered === "4_bit_counter") lowered = "4_bit_counter";
-        if (lowered === "8_bit_alu") lowered = "8_bit_alu";
-        if (lowered === "alu_tb") lowered = "alu";
-        if (lowered === "bin2bcd_tb") lowered = "bin2bcd";
-        if (lowered === "clk_tb") lowered = "clk";
-        if (lowered === "debounce_tb") lowered = "debounce";
-        if (lowered === "lfsr_tb") lowered = "lfsr";
-        if (lowered === "mealy_tb") lowered = "mealy";
-        if (lowered === "moore_tb") lowered = "moore";
-        if (lowered === "pwm_tb") lowered = "pwm";
-        if (lowered === "riscv_pipe_tb" || lowered === "riscv_pipe") lowered = "riscv";
-        if (lowered === "spi_master_tb" || lowered === "spi_master") lowered = "spi";
-        if (lowered === "tiny_cpu_tb" || lowered === "tiny_cpu") lowered = "tiny_cpu";
-        if (lowered === "traffic_l8_tb" || lowered === "traffic_l8") lowered = "traffic_l8";
-        
-        let candidates = [
-            `${lowered}_waveform.jpeg`,
-            `${lowered.replace(/_tb$/, '')}_waveform.jpeg`,
-            lowered.replace(/_complete$/, '') + "_waveform.jpeg"
-        ];
-        for (let cand of candidates) {
-            if (waveformSet.has(cand)) return cand;
-        }
+    function findWaveform(base) {
+        let low = base.toLowerCase();
+        if (low === "2_to_4_decoder") return "decoder_waveform.jpeg";
+        if (low === "4_1_mux") return "4_in_1_op_mux.jpeg";
+        if (low === "universal_shift_reg") return "universal_shifter_waveform.jpeg";
+        if (low === "pipelined_multiplier") return "pipelined_multiplier_waveform.jpeg";
+        if (low === "d_flip_flop") return "d_ff_waveform.jpeg";
+        if (low === "uart_rx" || low === "uart_rx_tb") return "uart_rx_waveform.jpeg";
+        if (low === "uart_tx" || low === "uart_tx_tb") return "uart_tx_waveform.jpeg";
+        if (low === "asynch") low = "async";
+        if (low === "asynch_tb") low = "async";
+        if (low === "half_adder_complete") low = "ha";
+        if (low === "full_adder" || low === "full_adder_tb") low = "fa";
+        if (low === "4_bit_left_shift") low = "left_shift";
+        if (low === "4_bit_r8_shift") low = "4_bit_r8_shift";
+        if (low === "up_down_counter") low = "up_down_counter";
+        if (low === "4_bit_counter") low = "4_bit_counter";
+        if (low === "8_bit_alu") low = "8_bit_alu";
+        if (low === "alu_tb") low = "alu";
+        if (low === "bin2bcd_tb") low = "bin2bcd";
+        if (low === "clk_tb") low = "clk";
+        if (low === "debounce_tb") low = "debounce";
+        if (low === "lfsr_tb") low = "lfsr";
+        if (low === "mealy_tb") low = "mealy";
+        if (low === "moore_tb") low = "moore";
+        if (low === "pwm_tb") low = "pwm";
+        if (low === "riscv_pipe_tb" || low === "riscv_pipe") low = "riscv";
+        if (low === "spi_master_tb" || low === "spi_master") low = "spi";
+        if (low === "tiny_cpu_tb" || low === "tiny_cpu") low = "tiny_cpu";
+        if (low === "traffic_l8_tb" || low === "traffic_l8") low = "traffic_l8";
+        let candidates = [`${low}_waveform.jpeg`, `${low.replace(/_tb$/,'')}_waveform.jpeg`, low.replace(/_complete$/,'') + "_waveform.jpeg"];
+        for (let c of candidates) if (waveformSet.has(c)) return c;
         return null;
     }
-
-    function generateMeta(projectBase) {
-        const base = projectBase.toLowerCase();
-        let functionDesc = "Digital logic module";
-        let principle = "Based on combinational/sequential logic";
-        let working = "Simulated with testbench & waveform validation";
-        let example = "Typical usage in hardware design flow";
-        
-        if (base.includes("decoder") || base === "2_to_4_decoder") {
-            functionDesc = "2-to-4 line decoder: enables one of 4 outputs based on 2-bit select.";
-            principle = "AND/NOT gates or assign statements using truth table.";
-            working = "When en=1, output[sel] = 1; rest 0.";
-            example = "Memory address decoding, demultiplexing.";
-        } else if (base.includes("left_shift") || base.includes("4_bit_left_shift")) {
-            functionDesc = "4-bit left shift register: shifts bits left, LSB filled with 0 or serial input.";
-            principle = "Edge-triggered flip-flops cascaded.";
-            working = "Each clock cycle, data <= {data[2:0], shift_in}.";
-            example = "Arithmetic scaling, serial-parallel conversion.";
-        } else if (base.includes("4_bit_reg")) {
-            functionDesc = "4-bit register: stores data on clock edge.";
-            principle = "D flip-flops with enable/reset.";
-            working = "Load/store synchronous to clk.";
-            example = "Pipeline registers, data buffering.";
-        } else if (base.includes("4_bit_r8_shift")) {
-            functionDesc = "4-bit right shift register with parallel load.";
-            principle = "Shift right on each clock, shift_in from left.";
-            working = "Used for serial output or division by 2.";
-            example = "UART receive shift register.";
-        } else if (base.includes("counter") && base.includes("4_bit_counter")) {
-            functionDesc = "4-bit synchronous binary counter 0-15.";
-            principle = "T flip-flops or add-one logic.";
-            working = "Counts up on each rising edge, reset to 0.";
-            example = "Timer, frequency divider.";
-        } else if (base.includes("up_down_counter")) {
-            functionDesc = "Up/Down counter (mode select).";
-            principle = "Increment or decrement based on up/down pin.";
-            working = "Counts 0..15 and wraps.";
-            example = "Address generator, digital scrolling.";
-        } else if (base.includes("mux") || base === "4_1_mux") {
-            functionDesc = "4:1 multiplexer: select one of four inputs to output.";
-            principle = "Dataflow using assign or case statement.";
-            working = "Out = in[sel].";
-            example = "Data routing, ALU source selection.";
-        } else if (base.includes("8_bit_alu") || base === "alu") {
-            functionDesc = "8-bit Arithmetic Logic Unit: add, sub, AND, OR, XOR, shift.";
-            principle = "Combinational logic with operation select.";
-            working = "ALU out = (op == ADD) ? a+b : (op==SUB)? a-b ...";
-            example = "CPU core datapath.";
-        } else if (base.includes("bin2bcd")) {
-            functionDesc = "Binary to BCD converter (double dabble algorithm).";
-            principle = "Iterative add-3 shift.";
-            working = "Converts 8-bit binary to 12-bit BCD.";
-            example = "7-segment display drivers.";
-        } else if (base.includes("clk")) {
-            functionDesc = "Clock divider / clock generator module.";
-            principle = "Counter-based frequency division.";
-            working = "Outputs slower clock from fast oscillator.";
-            example = "Generate 1Hz from 50MHz.";
-        } else if (base.includes("debounce")) {
-            functionDesc = "Switch debouncer: removes bouncing from mechanical buttons.";
-            principle = "State machine with counter delay.";
-            working = "Output stable after 10ms filter.";
-            example = "Button input for FPGA.";
-        } else if (base.includes("half_adder")) {
-            functionDesc = "Half adder: sum = a xor b, carry = a & b.";
-            principle = "Gate-level combinational.";
-            working = "Adds two 1-bit numbers.";
-            example = "Building full adder.";
-        } else if (base.includes("full_adder")) {
-            functionDesc = "Full adder: 1-bit add with carry in.";
-            principle = "2 half adders or direct logic.";
-            working = "Sum = a xor b xor cin, cout = (a&b)|(b&cin)|(a&cin).";
-            example = "Ripple carry adder.";
-        } else if (base.includes("lfsr")) {
-            functionDesc = "Linear Feedback Shift Register: pseudo-random pattern generator.";
-            principle = "XOR taps on shift chain.";
-            working = "Max sequence length 2^n -1.";
-            example = "Test pattern generation, scrambling.";
-        } else if (base.includes("mealy")) {
-            functionDesc = "Mealy FSM: output depends on state and input.";
-            principle = "Next state logic + output logic.";
-            working = "React faster to inputs.";
-            example = "Sequence detector 101.";
-        } else if (base.includes("moore")) {
-            functionDesc = "Moore FSM: output depends only on current state.";
-            principle = "Synchronous state machine.";
-            working = "More stable outputs.";
-            example = "Traffic light controller.";
-        } else if (base.includes("asynch")) {
-            functionDesc = "Asynchronous FIFO / reset bridge? Asynchronous logic example.";
-            principle = "Latches or handshake.";
-            working = "No global clock; event driven.";
-            example = "Arbiter circuits.";
-        } else if (base.includes("pwm")) {
-            functionDesc = "Pulse Width Modulation generator.";
-            principle = "Comparator between counter and duty cycle.";
-            working = "Produces variable duty square wave.";
-            example = "LED dimming, motor speed.";
-        } else if (base.includes("riscv")) {
-            functionDesc = "RISC-V pipelined processor (simple stages).";
-            principle = "Fetch, decode, execute, memory, writeback.";
-            working = "Executes RV32I base instructions.";
-            example = "Educational CPU core.";
-        } else if (base.includes("spi_master")) {
-            functionDesc = "SPI Master controller (MOSI, MISO, SCLK).";
-            principle = "Shift register with clock polarity.";
-            working = "Full duplex communication.";
-            example = "Flash memory, ADC interface.";
-        } else if (base.includes("tiny_cpu")) {
-            functionDesc = "Tiny CPU with minimal instruction set.";
-            principle = "Control unit, ALU, regfile.";
-            working = "Executes custom assembly.";
-            example = "Microcontroller soft core.";
-        } else if (base.includes("traffic_l8")) {
-            functionDesc = "Traffic Light Controller (8-state).";
-            principle = "FSM with timers.";
-            working = "Red -> Green -> Yellow -> Red.";
-            example = "Intersection control demo.";
-        } else {
-            functionDesc = `Verilog module: ${projectBase.replace(/_/g, ' ')}`;
-            principle = "Synthesizable RTL design.";
-            working = "Simulated with testbench and waveform analysis.";
-            example = "FPGA implementation / ASIC flow.";
-        }
-        return { functionDesc, principle, working, example };
+    function generateMeta(base) {
+        const b = base.toLowerCase();
+        if (b.includes("decoder") || b === "2_to_4_decoder") return { functionDesc: "2-to-4 line decoder", principle: "AND/NOT gates", working: "When en=1, output[sel]=1", example: "Memory decoding" };
+        if (b.includes("left_shift")) return { functionDesc: "4-bit left shift register", principle: "Flip-flops cascaded", working: "data <= {data[2:0], shift_in}", example: "Serial-parallel conversion" };
+        if (b === "4_bit_reg") return { functionDesc: "4-bit register", principle: "D flip-flops", working: "Load on clock edge", example: "Pipeline register" };
+        if (b === "4_bit_r8_shift") return { functionDesc: "4-bit right shift register", principle: "Shift right each cycle", working: "LSB shifted out", example: "UART receive" };
+        if (b === "4_bit_counter") return { functionDesc: "4-bit binary counter 0-15", principle: "Increment on clock", working: "Counts up, reset to 0", example: "Timer" };
+        if (b === "up_down_counter") return { functionDesc: "Up/Down counter", principle: "Mode select", working: "Counts up/down", example: "Address generator" };
+        if (b === "4_1_mux") return { functionDesc: "4:1 multiplexer", principle: "Dataflow/assign", working: "Out = in[sel]", example: "Data routing" };
+        if (b === "8_bit_alu" || b === "alu") return { functionDesc: "8-bit ALU", principle: "Combinational logic", working: "Add, sub, AND, OR, XOR", example: "CPU datapath" };
+        if (b.includes("bin2bcd")) return { functionDesc: "Binary to BCD", principle: "Double dabble", working: "Converts 8-bit to BCD", example: "7-segment display" };
+        if (b.includes("clk")) return { functionDesc: "Clock divider", principle: "Counter division", working: "Slower clock output", example: "Generate 1Hz from 50MHz" };
+        if (b.includes("debounce")) return { functionDesc: "Switch debouncer", principle: "State machine + delay", working: "Stable output after 10ms", example: "Button input" };
+        if (b.includes("d_flip_flop")) return { functionDesc: "D flip-flop async reset", principle: "Edge-sensitive", working: "Q <= D at posedge clk", example: "Basic storage" };
+        if (b.includes("half_adder")) return { functionDesc: "Half adder", principle: "Gate-level", working: "Sum = a xor b, carry = a&b", example: "Full adder building block" };
+        if (b.includes("full_adder")) return { functionDesc: "Full adder", principle: "2 half adders", working: "Sum = a xor b xor cin", example: "Ripple carry adder" };
+        if (b.includes("lfsr")) return { functionDesc: "LFSR", principle: "XOR feedback", working: "Pseudo-random pattern", example: "Test pattern generation" };
+        if (b.includes("mealy")) return { functionDesc: "Mealy FSM", principle: "Output depends on state & input", working: "React faster", example: "Sequence detector" };
+        if (b.includes("moore")) return { functionDesc: "Moore FSM", principle: "Output depends only on state", working: "Stable outputs", example: "Traffic light" };
+        if (b.includes("asynch")) return { functionDesc: "Asynchronous logic", principle: "No global clock", working: "Event driven", example: "Arbiter" };
+        if (b.includes("pwm")) return { functionDesc: "PWM generator", principle: "Counter compare", working: "Variable duty cycle", example: "LED dimming" };
+        if (b.includes("riscv")) return { functionDesc: "RISC-V pipelined CPU", principle: "Fetch-decode-execute", working: "RV32I instructions", example: "Educational core" };
+        if (b.includes("spi_master")) return { functionDesc: "SPI Master", principle: "Shift register", working: "Full duplex", example: "Flash memory" };
+        if (b.includes("tiny_cpu")) return { functionDesc: "Tiny CPU", principle: "Control unit + ALU", working: "Custom instruction set", example: "Microcontroller soft core" };
+        if (b.includes("traffic_l8")) return { functionDesc: "Traffic light controller", principle: "FSM with timers", working: "Red -> Green -> Yellow", example: "Intersection" };
+        if (b.includes("universal_shift_reg")) return { functionDesc: "Universal shift register", principle: "Multiplexed flip-flops", working: "Hold, shift left/right, parallel load", example: "Barrel shifter" };
+        if (b.includes("pipelined_multiplier")) return { functionDesc: "Pipelined multiplier", principle: "Partial products + pipeline", working: "Result after 3 cycles", example: "DSP filters" };
+        if (b.includes("uart_rx")) return { functionDesc: "UART receiver", principle: "Start bit + baud sampling", working: "Stores received byte", example: "Serial console" };
+        if (b.includes("uart_tx")) return { functionDesc: "UART transmitter", principle: "Parallel to serial", working: "Transmits LSB first", example: "Debug logging" };
+        return { functionDesc: `Verilog module: ${base.replace(/_/g,' ')}`, principle: "Synthesizable RTL", working: "Simulated with testbench", example: "FPGA/ASIC" };
     }
-
     let projects = [];
-    for (let codeFile of codeFilesRaw) {
-        let baseName = getProjectBaseName(codeFile);
-        let waveformMatch = findWaveform(baseName);
-        let meta = generateMeta(baseName);
-        projects.push({
-            title: baseName.replace(/_/g, ' ').replace(/tb/i, '(testbench)'),
-            rawBase: baseName,
-            codeImg: codeFile,
-            waveformImg: waveformMatch,
-            ...meta
-        });
+    for (let cf of codeFilesRaw) {
+        let bn = getProjectBaseName(cf);
+        let wf = findWaveform(bn);
+        let meta = generateMeta(bn);
+        projects.push({ title: bn.replace(/_/g,' ').replace(/tb/i,'(testbench)'), codeImg: cf, waveformImg: wf, ...meta });
     }
-    projects.sort((a,b) => a.title.localeCompare(b.title));
-
-    const root = document.getElementById('projectsRoot');
-    function renderProjects() {
+    projects.sort((a,b)=>a.title.localeCompare(b.title));
+    function escapeHtml(s) { return s.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+    function render() {
         let html = '';
         let serial = 1;
-        for (let proj of projects) {
-            const hasWave = proj.waveformImg;
-            html += `
-                <div class="project-card">
-                    <div class="card-header">
-                        <div class="project-title">⚡ ${escapeHtml(proj.title)} 
-                            <span class="serial">#${serial}</span>
-                        </div>
-                    </div>
-                    <div class="image-section">
-                        <div class="img-card">
-                            <p>📜 VERILOG CODE (click to zoom)</p>
-                            <img src="${escapeHtml(proj.codeImg)}" alt="code: ${proj.title}" onclick="window.open(this.src)" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20100%22%3E%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2250%22%20fill%3D%22%23ff8888%22%3ECode%20image%20missing%3C%2Ftext%3E%3C%2Fsvg%3E';">
-                        </div>
-                        <div class="img-card">
-                            <p>📈 WAVEFORM SIMULATION</p>
-                            ${hasWave ? `<img src="${escapeHtml(proj.waveformImg)}" alt="waveform: ${proj.title}" onclick="window.open(this.src)" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20100%22%3E%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2250%22%20fill%3D%22%23ffa07a%22%3EWaveform%20not%20found%3C%2Ftext%3E%3C%2Fsvg%3E';">` 
-                            : `<div class="missing">⚠️ Waveform not available</div>`}
-                        </div>
-                    </div>
-                    <div class="details">
-                        <p><strong>🔬 FUNCTION:</strong> ${escapeHtml(proj.functionDesc)}</p>
-                        <p><strong>⚙️ PRINCIPLE:</strong> ${escapeHtml(proj.principle)}</p>
-                        <p><strong>🧠 WORKING:</strong> ${escapeHtml(proj.working)}</p>
-                        <p><strong>💡 EXAMPLE USE:</strong> ${escapeHtml(proj.example)}</p>
-                        <span class="func-badge">🧪 verified simulation</span> <span class="func-badge">📁 RTL</span>
-                    </div>
-                </div>
-            `;
+        for (let p of projects) {
+            html += `<div class="project-card"><div class="card-header"><div class="project-title">⚡ ${escapeHtml(p.title)} <span class="serial">#${serial}</span></div></div>
+                <div class="image-section"><div class="img-card"><p>📜 VERILOG CODE</p><img src="${escapeHtml(p.codeImg)}" onclick="window.open(this.src)" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20100%22%3E%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2250%22%20fill%3D%22%23ff8888%22%3ECode%20missing%3C%2Ftext%3E%3C%2Fsvg%3E';"></div>
+                <div class="img-card"><p>📈 WAVEFORM</p>${p.waveformImg ? `<img src="${escapeHtml(p.waveformImg)}" onclick="window.open(this.src)" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20100%22%3E%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2250%22%20fill%3D%22%23ffa07a%22%3EWaveform%20missing%3C%2Ftext%3E%3C%2Fsvg%3E';">` : `<div class="missing">⚠️ Waveform not available</div>`}</div></div>
+                <div class="details"><p><strong>🔬 FUNCTION:</strong> ${escapeHtml(p.functionDesc)}</p><p><strong>⚙️ PRINCIPLE:</strong> ${escapeHtml(p.principle)}</p><p><strong>🧠 WORKING:</strong> ${escapeHtml(p.working)}</p><p><strong>💡 EXAMPLE USE:</strong> ${escapeHtml(p.example)}</p><span class="func-badge">🧪 verified simulation</span> <span class="func-badge">📁 RTL</span></div></div>`;
             serial++;
         }
-        root.innerHTML = html;
+        document.getElementById('projectsRoot').innerHTML = html;
     }
-
-    function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
-    
-    renderProjects();
+    render();
 </script>
 </body>
 </html>

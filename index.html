@@ -78,7 +78,7 @@
         "parametrised_waveform.jpeg", "pwm_waveform.jpeg", "riscv_waveform.jpeg", "spi_waveform.jpeg",
         "syn_fifo_waveform.jpeg", "tiny_cpu_waveform.jpeg", "traffic_l8_waveform.jpeg",
         "up_down_counter_waveform.jpeg", "decoder_waveform.jpeg", "4_in_1_op_mux.jpeg",
-        "universal_sfiter_waveform.jpeg", "pipelined_multiplier_waveform.jpeg",
+        "universal_shifter_waveform.jpeg", "pipelined_multiplier_waveform.jpeg",
         "d_ff_waveform.jpeg", "uart_rx_waveform.jpeg", "uart_tx_waveform.jpeg"
     ];
     const waveformSet = new Set(waveformFilesRaw.map(w => w.replace(/,jpeg/i, ".jpeg")));
@@ -91,7 +91,7 @@
         let low = base.toLowerCase();
         if (low === "2_to_4_decoder") return "decoder_waveform.jpeg";
         if (low === "4_1_mux") return "4_in_1_op_mux.jpeg";
-        if (low === "universal_shift_reg") return "universal_sfiter_waveform.jpeg";
+        if (low === "universal_shift_reg") return "universal_shifter_waveform.jpeg";
         if (low === "pipelined_multiplier") return "pipelined_multiplier_waveform.jpeg";
         if (low === "d_flip_flop") return "d_ff_waveform.jpeg";
         if (low === "uart_rx" || low === "uart_rx_tb") return "uart_rx_waveform.jpeg";

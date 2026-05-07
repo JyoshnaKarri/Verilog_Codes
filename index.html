@@ -66,7 +66,7 @@
         "asynch code.png", "asynch_tb code.png", "pwm_tb code.png", "pwm code.png",
         "riscv_pipe_tb code.png", "riscv_pipe code.png", "spi_master_tb code.png", "spi_master code.png",
         "tiny_cpu code.png", "tiny_cpu_tb code.png", "traffic_l8 code.png", "traffic_l8_tb code.png",
-        "universal_shift_reg code.png", "pipelined_multiplier code.png",
+         "pipelined_multiplier code.png",
         "D_flip_flop_code.png", "uart_tx_code.png", "uart_tx_tb_code.png", "uart_rx_tb_code.png", "uart_rx_code.png"
     ];
     const waveformFilesRaw = [
@@ -78,7 +78,7 @@
         "parametrised_waveform.jpeg", "pwm_waveform.jpeg", "riscv_waveform.jpeg", "spi_waveform.jpeg",
         "syn_fifo_waveform.jpeg", "tiny_cpu_waveform.jpeg", "traffic_l8_waveform.jpeg",
         "up_down_counter_waveform.jpeg", "decoder_waveform.jpeg", "4_in_1_op_mux.jpeg",
-        "universal_shifter_waveform.jpeg", "pipelined_multiplier_waveform.jpeg",
+         "pipelined_multiplier_waveform.jpeg",
         "d_ff_waveform.jpeg", "uart_rx_waveform.jpeg", "uart_tx_waveform.jpeg"
     ];
     const waveformSet = new Set(waveformFilesRaw.map(w => w.replace(/,jpeg/i, ".jpeg")));
@@ -91,7 +91,6 @@
         let low = base.toLowerCase();
         if (low === "2_to_4_decoder") return "decoder_waveform.jpeg";
         if (low === "4_1_mux") return "4_in_1_op_mux.jpeg";
-        if (low === "universal_shift_reg") return "universal_shifter_waveform.jpeg";
         if (low === "pipelined_multiplier") return "pipelined_multiplier_waveform.jpeg";
         if (low === "d_flip_flop") return "d_ff_waveform.jpeg";
         if (low === "uart_rx" || low === "uart_rx_tb") return "uart_rx_waveform.jpeg";
@@ -146,7 +145,6 @@
         if (b.includes("spi_master")) return { functionDesc: "SPI Master", principle: "Shift register", working: "Full duplex", example: "Flash memory" };
         if (b.includes("tiny_cpu")) return { functionDesc: "Tiny CPU", principle: "Control unit + ALU", working: "Custom instruction set", example: "Microcontroller soft core" };
         if (b.includes("traffic_l8")) return { functionDesc: "Traffic light controller", principle: "FSM with timers", working: "Red -> Green -> Yellow", example: "Intersection" };
-        if (b.includes("universal_shift_reg")) return { functionDesc: "Universal shift register", principle: "Multiplexed flip-flops", working: "Hold, shift left/right, parallel load", example: "Barrel shifter" };
         if (b.includes("pipelined_multiplier")) return { functionDesc: "Pipelined multiplier", principle: "Partial products + pipeline", working: "Result after 3 cycles", example: "DSP filters" };
         if (b.includes("uart_rx")) return { functionDesc: "UART receiver", principle: "Start bit + baud sampling", working: "Stores received byte", example: "Serial console" };
         if (b.includes("uart_tx")) return { functionDesc: "UART transmitter", principle: "Parallel to serial", working: "Transmits LSB first", example: "Debug logging" };

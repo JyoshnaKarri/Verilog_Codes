@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Verilog HDL Mastery – Projects, Code & Waveforms (Full Updated)</title>
+    <title>Verilog HDL Mastery – Full Portfolio (Johnson Counter Added)</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0a0c12; font-family: 'Segoe UI', 'Fira Code', monospace; color: #e3e6f0; line-height: 1.5; padding: 2rem 1.5rem; }
+        body { background: #0a0c12; font-family: 'Segoe UI', 'Fira Code', monospace; color: #e3e6f0; padding: 2rem 1.5rem; }
         .container { max-width: 1600px; margin: 0 auto; }
         .theory { background: linear-gradient(145deg, #10131c, #090b10); border-radius: 2rem; padding: 2rem; margin-bottom: 3rem; border: 1px solid #2a2f3f; }
         h1 { font-size: 2.8rem; background: linear-gradient(135deg, #b3f0ff, #7aa2f7); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -47,14 +47,20 @@
             <div class="theory-card"><h3>🏗️ Types of Verilog Structure</h3><ul><li>Modules / ports</li><li>Continuous assignments (assign)</li><li>Procedural blocks (always, initial)</li><li>Gate‑level & dataflow</li><li>Finite State Machines (Mealy/Moore)</li><li>Testbenches (timing, monitors)</li></ul></div>
         </div>
     </div>
+
     <div class="projects-header">
         <h2>📁 VERILOG PROJECTS · CODE + WAVEFORMS</h2>
         <span class="badge">🔍 alphabetical order | click image to enlarge</span>
     </div>
-    <div id="projectsRoot" class="project-grid"><div style="text-align:center; grid-column:1/-1;">loading projects...</div></div>
+
+    <div id="projectsRoot" class="project-grid">
+        <div style="text-align:center; grid-column:1/-1;">loading projects...</div>
+    </div>
     <footer>🧪 Full Verilog portfolio — place all .png and .jpeg files in the same folder as this HTML.</footer>
 </div>
+
 <script>
+    // ---------- CODE PNG FILES (added johnson_counter_code.png) ----------
     const codeFilesRaw = [
         "2_to_4_decoder code.png", "4_bit_left_shift code.png", "4_bit_reg code.png",
         "4_bit_r8_shift code.png", "4_bit_counter code.png", "up_down_counter code.png",
@@ -66,9 +72,12 @@
         "asynch code.png", "asynch_tb code.png", "pwm_tb code.png", "pwm code.png",
         "riscv_pipe_tb code.png", "riscv_pipe code.png", "spi_master_tb code.png", "spi_master code.png",
         "tiny_cpu code.png", "tiny_cpu_tb code.png", "traffic_l8 code.png", "traffic_l8_tb code.png",
-         "pipelined_multiplier code.png",
-        "D_flip_flop_code.png", "uart_tx_code.png", "uart_tx_tb_code.png", "uart_rx_tb_code.png", "uart_rx_code.png"
+        "universal_shift_reg code.png", "pipelined_multiplier code.png",
+        "D_flip_flop_code.png", "uart_tx_code.png", "uart_tx_tb_code.png", "uart_rx_tb_code.png", "uart_rx_code.png",
+        "johnson_counter_code.png"   // NEW
     ];
+
+    // ---------- WAVEFORM FILES (added Johnson_Counter_waveform.jpeg) ----------
     const waveformFilesRaw = [
         "4_bit_counter_waveform.jpeg", "4_bit_r8_shift_waveform.jpeg", "4_bit_reg_waveform.jpeg",
         "8_bit_alu_waveform.jpeg", "alu_waveform.jpeg", "async_waveform.jpeg", "bin2bcd_waveform.jpeg",
@@ -78,50 +87,75 @@
         "parametrised_waveform.jpeg", "pwm_waveform.jpeg", "riscv_waveform.jpeg", "spi_waveform.jpeg",
         "syn_fifo_waveform.jpeg", "tiny_cpu_waveform.jpeg", "traffic_l8_waveform.jpeg",
         "up_down_counter_waveform.jpeg", "decoder_waveform.jpeg", "4_in_1_op_mux.jpeg",
-         "pipelined_multiplier_waveform.jpeg",
-        "d_ff_waveform.jpeg", "uart_rx_waveform.jpeg", "uart_tx_waveform.jpeg"
+        "universal_shifter_waveform.jpeg", "pipelined_multiplier_waveform.jpeg",
+        "d_ff_waveform.jpeg", "uart_rx_waveform.jpeg", "uart_tx_waveform.jpeg",
+        "Johnson_Counter_waveform.jpeg"   // NEW (capital J and C)
     ];
-    const waveformSet = new Set(waveformFilesRaw.map(w => w.replace(/,jpeg/i, ".jpeg")));
-    function getProjectBaseName(f) {
-        if (f.endsWith(" code.png")) return f.replace(/ code\.png$/, "").trim();
-        if (f.endsWith("_code.png")) return f.replace(/_code\.png$/, "").trim();
-        return f.replace(/\.png$/, "").trim();
+
+    const waveformSet = new Set(waveformFilesRaw);
+
+    function getProjectBaseName(codeFilename) {
+        if (codeFilename.endsWith(" code.png")) return codeFilename.slice(0, -9);
+        if (codeFilename.endsWith("_code.png")) return codeFilename.slice(0, -9);
+        return codeFilename.replace(/\.png$/, "");
     }
-    function findWaveform(base) {
-        let low = base.toLowerCase();
+
+    function findWaveform(projectBase) {
+        const low = projectBase.toLowerCase();
+        // Direct overrides
         if (low === "2_to_4_decoder") return "decoder_waveform.jpeg";
         if (low === "4_1_mux") return "4_in_1_op_mux.jpeg";
+        if (low === "universal_shift_reg") return "universal_shifter_waveform.jpeg";
         if (low === "pipelined_multiplier") return "pipelined_multiplier_waveform.jpeg";
         if (low === "d_flip_flop") return "d_ff_waveform.jpeg";
         if (low === "uart_rx" || low === "uart_rx_tb") return "uart_rx_waveform.jpeg";
         if (low === "uart_tx" || low === "uart_tx_tb") return "uart_tx_waveform.jpeg";
-        if (low === "asynch") low = "async";
-        if (low === "asynch_tb") low = "async";
-        if (low === "half_adder_complete") low = "ha";
-        if (low === "full_adder" || low === "full_adder_tb") low = "fa";
-        if (low === "4_bit_left_shift") low = "left_shift";
-        if (low === "4_bit_r8_shift") low = "4_bit_r8_shift";
-        if (low === "up_down_counter") low = "up_down_counter";
-        if (low === "4_bit_counter") low = "4_bit_counter";
-        if (low === "8_bit_alu") low = "8_bit_alu";
-        if (low === "alu_tb") low = "alu";
-        if (low === "bin2bcd_tb") low = "bin2bcd";
-        if (low === "clk_tb") low = "clk";
-        if (low === "debounce_tb") low = "debounce";
-        if (low === "lfsr_tb") low = "lfsr";
-        if (low === "mealy_tb") low = "mealy";
-        if (low === "moore_tb") low = "moore";
-        if (low === "pwm_tb") low = "pwm";
-        if (low === "riscv_pipe_tb" || low === "riscv_pipe") low = "riscv";
-        if (low === "spi_master_tb" || low === "spi_master") low = "spi";
-        if (low === "tiny_cpu_tb" || low === "tiny_cpu") low = "tiny_cpu";
-        if (low === "traffic_l8_tb" || low === "traffic_l8") low = "traffic_l8";
-        let candidates = [`${low}_waveform.jpeg`, `${low.replace(/_tb$/,'')}_waveform.jpeg`, low.replace(/_complete$/,'') + "_waveform.jpeg"];
+        if (low === "johnson_counter") return "Johnson_Counter_waveform.jpeg";   // exact match
+
+        // Fuzzy logic for older projects
+        let mapped = low;
+        if (mapped === "asynch" || mapped === "asynch_tb") mapped = "async";
+        if (mapped === "half_adder_complete") mapped = "ha";
+        if (mapped === "full_adder" || mapped === "full_adder_tb") mapped = "fa";
+        if (mapped === "4_bit_left_shift") mapped = "left_shift";
+        if (mapped === "4_bit_r8_shift") mapped = "4_bit_r8_shift";
+        if (mapped === "up_down_counter") mapped = "up_down_counter";
+        if (mapped === "4_bit_counter") mapped = "4_bit_counter";
+        if (mapped === "8_bit_alu") mapped = "8_bit_alu";
+        if (mapped === "alu_tb") mapped = "alu";
+        if (mapped === "bin2bcd_tb") mapped = "bin2bcd";
+        if (mapped === "clk_tb") mapped = "clk";
+        if (mapped === "debounce_tb") mapped = "debounce";
+        if (mapped === "lfsr_tb") mapped = "lfsr";
+        if (mapped === "mealy_tb") mapped = "mealy";
+        if (mapped === "moore_tb") mapped = "moore";
+        if (mapped === "pwm_tb") mapped = "pwm";
+        if (mapped === "riscv_pipe_tb" || mapped === "riscv_pipe") mapped = "riscv";
+        if (mapped === "spi_master_tb" || mapped === "spi_master") mapped = "spi";
+        if (mapped === "tiny_cpu_tb" || mapped === "tiny_cpu") mapped = "tiny_cpu";
+        if (mapped === "traffic_l8_tb" || mapped === "traffic_l8") mapped = "traffic_l8";
+
+        const candidates = [
+            `${mapped}_waveform.jpeg`,
+            `${mapped.replace(/_tb$/, "")}_waveform.jpeg`,
+            mapped.replace(/_complete$/, "") + "_waveform.jpeg"
+        ];
         for (let c of candidates) if (waveformSet.has(c)) return c;
         return null;
     }
-    function generateMeta(base) {
-        const b = base.toLowerCase();
+
+    function generateMeta(projectBase) {
+        const b = projectBase.toLowerCase();
+        // Johnson Counter description
+        if (b.includes("johnson_counter")) {
+            return {
+                functionDesc: "Johnson Counter (twisted ring counter): 2n states using n flip-flops.",
+                principle: "Shift register with inverted feedback from last bit to first.",
+                working: "Initially reset to all zeros. On each clock, Q[0] <= ~Q[n-1]; others shift right. Generates unique sequence.",
+                example: "State machine, frequency divider, digital pattern generator."
+            };
+        }
+        // reuse existing mappings (same as before)
         if (b.includes("decoder") || b === "2_to_4_decoder") return { functionDesc: "2-to-4 line decoder", principle: "AND/NOT gates", working: "When en=1, output[sel]=1", example: "Memory decoding" };
         if (b.includes("left_shift")) return { functionDesc: "4-bit left shift register", principle: "Flip-flops cascaded", working: "data <= {data[2:0], shift_in}", example: "Serial-parallel conversion" };
         if (b === "4_bit_reg") return { functionDesc: "4-bit register", principle: "D flip-flops", working: "Load on clock edge", example: "Pipeline register" };
@@ -145,33 +179,63 @@
         if (b.includes("spi_master")) return { functionDesc: "SPI Master", principle: "Shift register", working: "Full duplex", example: "Flash memory" };
         if (b.includes("tiny_cpu")) return { functionDesc: "Tiny CPU", principle: "Control unit + ALU", working: "Custom instruction set", example: "Microcontroller soft core" };
         if (b.includes("traffic_l8")) return { functionDesc: "Traffic light controller", principle: "FSM with timers", working: "Red -> Green -> Yellow", example: "Intersection" };
+        if (b.includes("universal_shift_reg")) return { functionDesc: "Universal shift register", principle: "Multiplexed flip-flops", working: "Hold, shift left/right, parallel load", example: "Barrel shifter" };
         if (b.includes("pipelined_multiplier")) return { functionDesc: "Pipelined multiplier", principle: "Partial products + pipeline", working: "Result after 3 cycles", example: "DSP filters" };
         if (b.includes("uart_rx")) return { functionDesc: "UART receiver", principle: "Start bit + baud sampling", working: "Stores received byte", example: "Serial console" };
         if (b.includes("uart_tx")) return { functionDesc: "UART transmitter", principle: "Parallel to serial", working: "Transmits LSB first", example: "Debug logging" };
-        return { functionDesc: `Verilog module: ${base.replace(/_/g,' ')}`, principle: "Synthesizable RTL", working: "Simulated with testbench", example: "FPGA/ASIC" };
+        return { functionDesc: `Verilog module: ${projectBase.replace(/_/g,' ')}`, principle: "Synthesizable RTL", working: "Simulated with testbench", example: "FPGA/ASIC" };
     }
+
     let projects = [];
     for (let cf of codeFilesRaw) {
-        let bn = getProjectBaseName(cf);
-        let wf = findWaveform(bn);
-        let meta = generateMeta(bn);
-        projects.push({ title: bn.replace(/_/g,' ').replace(/tb/i,'(testbench)'), codeImg: cf, waveformImg: wf, ...meta });
+        let base = getProjectBaseName(cf);
+        let wave = findWaveform(base);
+        let meta = generateMeta(base);
+        projects.push({
+            title: base.replace(/_/g, ' ').replace(/tb/i, '(testbench)'),
+            codeImg: cf,
+            waveformImg: wave,
+            ...meta
+        });
     }
     projects.sort((a,b)=>a.title.localeCompare(b.title));
-    function escapeHtml(s) { return s.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
-    function render() {
+
+    const root = document.getElementById('projectsRoot');
+    function renderProjects() {
         let html = '';
         let serial = 1;
         for (let p of projects) {
-            html += `<div class="project-card"><div class="card-header"><div class="project-title">⚡ ${escapeHtml(p.title)} <span class="serial">#${serial}</span></div></div>
-                <div class="image-section"><div class="img-card"><p>📜 VERILOG CODE</p><img src="${escapeHtml(p.codeImg)}" onclick="window.open(this.src)" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20100%22%3E%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2250%22%20fill%3D%22%23ff8888%22%3ECode%20missing%3C%2Ftext%3E%3C%2Fsvg%3E';"></div>
-                <div class="img-card"><p>📈 WAVEFORM</p>${p.waveformImg ? `<img src="${escapeHtml(p.waveformImg)}" onclick="window.open(this.src)" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20100%22%3E%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2250%22%20fill%3D%22%23ffa07a%22%3EWaveform%20missing%3C%2Ftext%3E%3C%2Fsvg%3E';">` : `<div class="missing">⚠️ Waveform not available</div>`}</div></div>
-                <div class="details"><p><strong>🔬 FUNCTION:</strong> ${escapeHtml(p.functionDesc)}</p><p><strong>⚙️ PRINCIPLE:</strong> ${escapeHtml(p.principle)}</p><p><strong>🧠 WORKING:</strong> ${escapeHtml(p.working)}</p><p><strong>💡 EXAMPLE USE:</strong> ${escapeHtml(p.example)}</p><span class="func-badge">🧪 verified simulation</span> <span class="func-badge">📁 RTL</span></div></div>`;
+            html += `
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="project-title">⚡ ${escapeHtml(p.title)} <span class="serial">#${serial}</span></div>
+                    </div>
+                    <div class="image-section">
+                        <div class="img-card">
+                            <p>📜 VERILOG CODE</p>
+                            <img src="${escapeHtml(p.codeImg)}" onclick="window.open(this.src)" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20100%22%3E%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2250%22%20fill%3D%22%23ff8888%22%3ECode%20missing%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                        </div>
+                        <div class="img-card">
+                            <p>📈 WAVEFORM</p>
+                            ${p.waveformImg ? `<img src="${escapeHtml(p.waveformImg)}" onclick="window.open(this.src)" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20100%22%3E%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2250%22%20fill%3D%22%23ffa07a%22%3EWaveform%20missing%3C%2Ftext%3E%3C%2Fsvg%3E';">` : '<div class="missing">⚠️ Waveform not available</div>'}
+                        </div>
+                    </div>
+                    <div class="details">
+                        <p><strong>🔬 FUNCTION:</strong> ${escapeHtml(p.functionDesc)}</p>
+                        <p><strong>⚙️ PRINCIPLE:</strong> ${escapeHtml(p.principle)}</p>
+                        <p><strong>🧠 WORKING:</strong> ${escapeHtml(p.working)}</p>
+                        <p><strong>💡 EXAMPLE USE:</strong> ${escapeHtml(p.example)}</p>
+                        <span class="func-badge">🧪 verified simulation</span> <span class="func-badge">📁 RTL</span>
+                    </div>
+                </div>
+            `;
             serial++;
         }
-        document.getElementById('projectsRoot').innerHTML = html;
+        root.innerHTML = html;
     }
-    render();
+
+    function escapeHtml(str) { return str.replace(/[&<>]/g, m => m==='&'?'&amp;':m==='<'?'&lt;':'&gt;'); }
+    renderProjects();
 </script>
 </body>
 </html>
